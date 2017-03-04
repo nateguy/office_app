@@ -1,6 +1,21 @@
 class Department < ActiveRecord::Base
-  has_many :employees,
-           dependent: :destroy,
-           inverse_of: :department,
-           class_name: Department.name
+  validates_presence_of: :name
+
+  has_many(
+    :employees,
+    dependent: :destroy,
+    inverse_of: :department,
+    class_name: Department.name,
+  )
+
+  has_many(
+    :employees,
+    foreign_key: :department_id,
+    dependent: :destroy,
+    inverse_of: :department,
+  )
+
+  def employee_size
+    employees.size
+  end
 end
