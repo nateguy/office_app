@@ -1,5 +1,5 @@
 class Employee < ActiveRecord::Base
-  validates_presence_of: :first_name, :last_name
+  validates_presence_of :first_name, :last_name
 
   belongs_to(
     :department,
@@ -9,10 +9,10 @@ class Employee < ActiveRecord::Base
   )
 
   has_many(
-    :tags,
+    :employee_tags,
+    class_name: "::#{Employee::Tag.name}",
     foreign_key: :employee_id,
-    dependent: :destroy,
-    inverse_of: :employee,
+    dependent: :delete_all,
   )
 
   def full_name

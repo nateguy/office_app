@@ -1,9 +1,10 @@
 class Tag < ActiveRecord::Base
-  validates_presence_of: :name
-  
-  belongs_to(:employee,
-    class_name: Employee.name,
-    inverse_of: :tags,
-    foreign_key: :employee_id,
+  validates_presence_of :name
+
+  has_many(
+    :employee_tags,
+    class_name: "::#{Employee::Tag.name}",
+    foreign_key: :tag_id,
+    dependent: :delete_all,
   )
 end

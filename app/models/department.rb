@@ -1,12 +1,5 @@
 class Department < ActiveRecord::Base
-  validates_presence_of: :name
-
-  has_many(
-    :employees,
-    dependent: :destroy,
-    inverse_of: :department,
-    class_name: Department.name,
-  )
+  validates_presence_of :name
 
   has_many(
     :employees,
