@@ -15,8 +15,8 @@
     <tbody>
       <% @departments.each do |department| %>
         <tr class="page-departments-index_table-row">
-          <td class="page-departments-index_table-cell"><%= department.name %></td>
-          <td class="page-departments-index_table-cell"><%= department.employees.size %></td>
+          <td class="page-departments-index_table-cell"><%= department&.name %></td>
+          <td class="page-departments-index_table-cell"><%= department&.employees&.size %></td>
 
           <td class="page-departments-index_table-cell">
             <%= link_to 'Show', department,

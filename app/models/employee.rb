@@ -4,7 +4,8 @@ class Employee < ActiveRecord::Base
   include Contracts::Core
   include Contracts::Builtin
 
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :email
+  validates_format_of :email, with: /\A[\w\._%\-\+]+@[\w\.-]+\.[a-zA-Z]{2,4}\z/
 
   attr_reader :tag_ids
 

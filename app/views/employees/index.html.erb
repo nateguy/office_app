@@ -39,7 +39,7 @@
             <%= employee.email %>
           </td>
           <td class="page-employees-index_table-cell">
-            <%= employee.department.name %>
+            <%= employee&.department&.name %>
           </td>
           <td class="page-employees-index_table-cell">
             <%= employee.tag_names %>

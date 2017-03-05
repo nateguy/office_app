@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe ::EmployeesController, type: :controller do
   describe 'GET edit' do
     let!(:employee) {
-      Employee.create!(first_name: "Justin", last_name: "Davis")
+      Employee.create!({
+        first_name: "Justin",
+        last_name: "Davis",
+        email: "jd@gmail.com",
+      })
     }
     let(:call_action) do
       get :edit, id: employee
@@ -31,7 +35,11 @@ RSpec.describe ::EmployeesController, type: :controller do
 
   describe 'GET show' do
     let!(:employee) {
-      Employee.create!(first_name: "Justin", last_name: "Davis")
+      Employee.create!({
+        first_name: "Justin",
+        last_name: "Davis",
+        email: "jd@gmail.com",
+      })
     }
     let(:call_action) do
       get :show, id: employee

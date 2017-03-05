@@ -20,7 +20,7 @@
             <%= tag.name %>
           </td>
           <td class="page-tags-index_table-cell">
-            <%= tag.employees.size %>
+            <%= tag&.employees&.size %>
           </td>
           <td class="page-tags-index_table-cell">
             <%= link_to 'Show', tag,
