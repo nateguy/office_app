@@ -1,19 +1,15 @@
-class Employee::Tag < ActiveRecord::Base
+class EmployeeTag < ActiveRecord::Base
   belongs_to(
     :employee,
+    class_name: "::#{Employee.name}",
     inverse_of: :employee_tags,
     foreign_key: :employee_id,
   )
 
   belongs_to(
     :tag,
+    class_name: "::#{Tag.name}",
     inverse_of: :employee_tags,
     foreign_key: :tag_id,
   )
-  # belongs_to(
-  #   :department,
-  #   class_name: Department.name,
-  #   inverse_of: :employees,
-  #   foreign_key: :department_id,
-  # )
 end

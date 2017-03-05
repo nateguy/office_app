@@ -3,7 +3,7 @@ class Tag < ActiveRecord::Base
 
   has_many(
     :employee_tags,
-    class_name: "::#{Employee::Tag.name}",
+    class_name: "::#{EmployeeTag.name}",
     foreign_key: :tag_id,
     dependent: :delete_all,
   )

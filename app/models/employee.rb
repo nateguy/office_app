@@ -1,4 +1,9 @@
+require "contracts"
+
 class Employee < ActiveRecord::Base
+  include Contracts::Core
+  include Contracts::Builtin
+
   validates_presence_of :first_name, :last_name
 
   belongs_to(
@@ -10,14 +15,35 @@ class Employee < ActiveRecord::Base
 
   has_many(
     :employee_tags,
-    class_name: "::#{Employee::Tag.name}",
+    class_name: "::#{EmployeeTag.name}",
     foreign_key: :employee_id,
     dependent: :delete_all,
   )
+
 
   def full_name
     full_name_array = [first_name, last_name]
 
     full_name_array.compact.join(" ")
+  end
+
+
+  Contract Or[String, CollectionOf[Array, Or[String, Integer]]] => Any
+  def tag_ids=(tag_id_values)
+    # String input is mainly caused by incorrect hidden input,
+    # and the value should be ignored whatever the content is
+    employee_tags.clear
+    
+    if tag_id_values.is_a?(String)
+      return
+    end
+
+    found_tags = Tag.where(id: tag_id_values)
+    found_tags.each do |found_tag|
+      employee_tags << EmployeeTag.new({
+        employee: self,
+        tag: found_tag,
+      })
+    end
   end
 end
