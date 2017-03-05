@@ -8,5 +8,9 @@ class CreateEmployees < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :employees, :first_name
+    add_index :employees, :last_name
+    add_index :employees, :department_id
   end
 end

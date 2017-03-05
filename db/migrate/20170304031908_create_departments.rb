@@ -5,5 +5,7 @@ class CreateDepartments < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :departments, :name
   end
 end

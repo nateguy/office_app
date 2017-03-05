@@ -6,5 +6,8 @@ class CreateEmployeeTag < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :employee_tags, :employee_id
+    add_index :employee_tags, :tag_id
   end
 end
