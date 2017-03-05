@@ -27,6 +27,12 @@
     <%= f.text_field :email %>
   </div>
 
+  <%= f.label :department %>
+  <div class="field">
+    <%= f.select :department_id, Department.all.collect{|d|[d.name, d.id]}, {}, {class: "employee_department_selector"} %>
+  </div>
+
+
   <%= f.label :tag_ids, "Tags" %>
   <div class="field">
     <%= f.select :tag_ids, Tag.all.collect{|g|[g.name, g.id]}, {}, {class: "employee_tag_selector", multiple: true} %>

@@ -8,10 +8,17 @@
   background-color: $grey-very-light;
   padding: 10px;
 
+  .employee_department_selector {
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
   .page-employees_form-submit-button {
     @include button-submit();
   }
 
+  .employee_department_selector,
   .select2-selection--multiple,
   input {
     height: 30px;
