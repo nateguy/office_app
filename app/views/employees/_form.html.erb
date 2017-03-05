@@ -23,6 +23,11 @@
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
+  <div class="field">
+    <%= f.label :tag_ids %><br>
+    <%= f.select :tag_ids, Tag.all.collect{|g|[g.name, g.id]}, {}, {class: "employee_tag_selector", multiple: true} %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
