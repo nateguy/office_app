@@ -5,12 +5,13 @@
 
   <%= form_for :query, url: employees_path, html: {class: "page-employees-index-form", method: :get} do |f| %>
     <% department_selection_options = Department.all.collect{|department|[department.name, department.id]} %>
+    <span>Department:</span>
     <%= f.select :department,
         options_for_select(department_selection_options, query_department_id),
         {include_blank: "Any"} %>
 
     <% tag_selection_options = Tag.all.collect{|tag|[tag.name, tag.id]} %>
-
+    <span>Tag:</span>
     <%= f.select :tag,
         options_for_select(tag_selection_options, query_tag_id),
         {include_blank: "Any"} %>
