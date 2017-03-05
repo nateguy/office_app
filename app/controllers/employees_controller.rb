@@ -53,8 +53,6 @@ class EmployeesController < ApplicationController
   # POST /employees
   # POST /employees.json
   def create
-    puts "found tags"
-    puts employee_params[:tag_ids]
     employee = Employee.new(employee_params)
 
     respond_to do |format|
