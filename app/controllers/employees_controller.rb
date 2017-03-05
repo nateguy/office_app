@@ -60,7 +60,12 @@ class EmployeesController < ApplicationController
         format.html { redirect_to employee, notice: 'Employee was successfully created.' }
         format.json { render :show, status: :created, location: employee }
       else
-        format.html { render :new }
+        format.html {
+          render 'new',
+            locals: {
+              employee: employee,
+            }
+        }
         format.json { render json: employee.errors, status: :unprocessable_entity }
       end
     end
@@ -74,7 +79,12 @@ class EmployeesController < ApplicationController
         format.html { redirect_to employee, notice: 'Employee was successfully updated.' }
         format.json { render :show, status: :ok, location: employee }
       else
-        format.html { render :edit }
+        format.html {
+          render 'edit',
+            locals: {
+              employee: employee,
+            }
+        }
         format.json { render json: employee.errors, status: :unprocessable_entity }
       end
     end
