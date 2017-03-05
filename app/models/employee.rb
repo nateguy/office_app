@@ -27,6 +27,12 @@ class Employee < ActiveRecord::Base
     full_name_array.compact.join(" ")
   end
 
+  def tag_names
+    Tag.where(id: tag_ids).map do |tag|
+      tag.name
+    end.join(", ")
+  end
+
   def tag_ids
     employee_tags.map do |employee_tag|
       employee_tag&.tag&.id
