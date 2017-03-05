@@ -1,0 +1,34 @@
+@import "mixins/buttons";
+@import "mixins/table";
+
+.page-employees-index {
+  .page-employees-index-form {
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .page-employees-index_table-head {
+    text-align: left;
+  }
+
+  .page-employees-index_table-row {
+    @include table-row();
+  }
+
+  .page-employees-index_table-cell {
+    width: 20%;
+  }
+
+  .page-employee-index_button {
+    @include button-small();
+    width: 50px;
+  }
+
+  .page-employees-index_query-button {
+    @include button-small();
+  }
+}

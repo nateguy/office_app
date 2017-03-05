@@ -1,34 +1,38 @@
-<%= form_for(@employee) do |f| %>
-  <% if @employee.errors.any? %>
+<%= form_for(employee, html: {class: "page-employees_form"}) do |f| %>
+  <% if employee.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
 
       <ul>
-      <% @employee.errors.full_messages.each do |message| %>
+      <% employee.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
+  <%= f.label :first_name %>
   <div class="field">
-    <%= f.label :first_name %><br>
+
     <%= f.text_field :first_name %>
   </div>
+
+  <%= f.label :last_name %>
   <div class="field">
-    <%= f.label :last_name %><br>
     <%= f.text_field :last_name %>
   </div>
+
+  <%= f.label :email %>
   <div class="field">
-    <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
+
+  <%= f.label :tag_ids, "Tags" %>
   <div class="field">
-    <%= f.label :tag_ids %><br>
     <%= f.select :tag_ids, Tag.all.collect{|g|[g.name, g.id]}, {}, {class: "employee_tag_selector", multiple: true} %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", {class: "page-employees_form-submit-button"} %>
   </div>
 <% end %>

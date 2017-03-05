@@ -7,4 +7,8 @@ class Tag < ActiveRecord::Base
     foreign_key: :tag_id,
     dependent: :delete_all,
   )
+
+  def employees
+    Employee.where(id: employee_tags.select(:employee_id))
+  end
 end

@@ -1,0 +1,34 @@
+@import "mixins/buttons";
+@import "mixins/table";
+
+.page-tags-index {
+  h1 {
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .page-tags-index_table-head {
+    text-align: left;
+  }
+
+  .page-tags-index_table-row {
+    @include table-row();
+  }
+
+  .page-tags-index_table-cell {
+    width: 30%;
+  }
+
+  .page-tags-index_button {
+    @include button-small();
+    width: 50px;
+  }
+
+  .page-tags-index_query-button {
+    @include button-small();
+  }
+}

@@ -1,9 +1,17 @@
-<p id="notice"><%= notice %></p>
+<div class="page-departments-show">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @department.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @department.name %>
+  </p>
 
-<%= link_to 'Edit', edit_department_path(@department) %> |
-<%= link_to 'Back', departments_path %>
+  <p>
+    <strong>Employee Count:</strong>
+    <%= @department.employees.size %>
+  </p>
+  <div class="footer-links">
+    <%= link_to 'Edit', edit_department_path(@department) %> |
+    <%= link_to 'Back', departments_path %>
+  </div>
+</div>

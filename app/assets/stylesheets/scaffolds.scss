@@ -1,3 +1,7 @@
+h1 {
+  text-align: center;
+  font-size: 22px;
+}
 body {
   background-color: #fff;
   color: #333;
@@ -70,4 +74,9 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+.footer-links {
+  margin-top: 10px;
+  text-align: center;
 }

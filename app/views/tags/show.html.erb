@@ -1,9 +1,17 @@
-<p id="notice"><%= notice %></p>
+<div class="page-tags-show">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @tag.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @tag.name %>
+  </p>
 
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
-<%= link_to 'Back', tags_path %>
+  <p>
+    <strong>Employee Count:</strong>
+    <%= @tag.employees.size %>
+  </p>
+  <div class="footer-links">
+    <%= link_to 'Edit', edit_tag_path(@tag) %> |
+    <%= link_to 'Back', tags_path %>
+  </div>
+</div>

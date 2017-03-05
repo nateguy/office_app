@@ -1,0 +1,51 @@
+@import "variables/colors";
+@import "mixins/buttons";
+
+.page-employees_form {
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $grey-very-light;
+  padding: 10px;
+
+  .page-employees_form-submit-button {
+    @include button-submit();
+  }
+
+  .select2-selection--multiple,
+  input {
+    height: 30px;
+  }
+
+  .select2-container {
+    .select2-selection--multiple {
+      width: 310px;
+      border: 0;
+    }
+  }
+
+  .select2-container--default.select2-container--focus {
+    .select2-selection--multiple {
+      border: 0;
+    }
+  }
+
+
+  .field {
+    width: 310px;
+    padding: 0;
+    border: solid #aaaaaa 1px;
+
+    input {
+      width: 100%;
+      padding: 0;
+      border: 0;
+    }
+  }
+}
+
+.select2-container.select2-container--open {
+  .select2-dropdown {
+    width: 310px !important;
+  }
+}

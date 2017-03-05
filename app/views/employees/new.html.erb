@@ -1,5 +1,9 @@
-<h1>New Employee</h1>
+<div class="page-employees-new">
+  <h1>New Employee</h1>
 
-<%= render 'form' %>
+  <%= render partial: 'form', locals: {employee: employee} %>
 
-<%= link_to 'Back', employees_path %>
+  <div class="footer-links">
+    <%= link_to 'Back', employees_path %>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+@import "variables/colors";
+
+@mixin button-small {
+  background-color: $blue;
+  padding: 5px;
+  width: 50px;
+  border: 0;
+  border-radius: 2px;
+  color: $white;
+  text-decoration: none;
+}
+
+@mixin button-submit {
+  background-color: $blue;
+  color: $white;
+  font-size: 14px;
+  border: 0;
+  border-radius: 4px;
+  width: 100px;
+  box-sizing: content-box;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}

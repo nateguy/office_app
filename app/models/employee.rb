@@ -6,6 +6,8 @@ class Employee < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name
 
+  attr_reader :tag_ids
+
   belongs_to(
     :department,
     class_name: Department.name,
@@ -24,7 +26,7 @@ class Employee < ActiveRecord::Base
   def full_name
     full_name_array = [first_name, last_name]
 
-    full_name_array.compact.join(" ")
+    full_name_array&.compact&.join(" ")
   end
 
   def tag_names

@@ -1,0 +1,30 @@
+@import "mixins/buttons";
+@import "mixins/table";
+
+.page-departments-index {
+  h1 {
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .page-departments-index_table-head {
+    text-align: left;
+  }
+
+  .page-departments-index_table-row {
+    @include table-row();
+  }
+
+  .page-departments-index_table-cell {
+    width: 30%;
+  }
+
+  .page-departments-index_button {
+    @include button-small();
+    width: 50px;
+  }
+}

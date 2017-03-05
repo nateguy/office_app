@@ -1,6 +1,10 @@
-<h1>Editing Employee</h1>
+<div class="page-employees-edit">
+  <h1>Editing Employee</h1>
 
-<%= render 'form' %>
+  <%= render partial: 'form', locals: {employee: employee} %>
 
-<%= link_to 'Show', @employee %> |
-<%= link_to 'Back', employees_path %>
+  <div class="footer-links">
+    <%= link_to 'Show', employee %> |
+    <%= link_to 'Back', employees_path %>
+  </div>
+</div>

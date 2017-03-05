@@ -1,27 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="page-tags-index">
 
-<h1>Listing Tags</h1>
+  <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1>Listing Tags</h1>
 
-  <tbody>
-    <% @tags.each do |tag| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= tag.name %></td>
-        <td><%= link_to 'Show', tag %></td>
-        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th class="page-tags-index_table-head">Name</th>
+        <th class="page-tags-index_table-head">Employee Count</th>
+        <th class="page-tags-index_table-head"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @tags.each do |tag| %>
+        <tr class="page-tags-index_table-row">
+          <td class="page-tags-index_table-cell">
+            <%= tag.name %>
+          </td>
+          <td class="page-tags-index_table-cell">
+            <%= tag.employees.size %>
+          </td>
+          <td class="page-tags-index_table-cell">
+            <%= link_to 'Show', tag,
+              class: "page-tags-index_button" %>
+            <%= link_to 'Edit', edit_tag_path(tag),
+              class: "page-tags-index_button" %>
+            <%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' },
+              class: "page-tags-index_button" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Tag', new_tag_path %>
+  <div class="footer-links">
+    <%= link_to 'New Tag', new_tag_path %> | <%= link_to 'Home', root_path %>
+  </div>
+</div>

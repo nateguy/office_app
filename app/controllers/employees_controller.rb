@@ -1,38 +1,69 @@
+require "memoist"
+
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  extend(
+    ::Memoist,
+  )
 
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.all
+
+    query_department_id = params[:query] && params[:query][:department].presence
+    query_tag_id = params[:query] && params[:query][:tag].presence
+
+    employees = Employee.all
+    if query_department_id
+      employees = employees.where(department_id: query_department_id)
+    end
+    if query_tag_id
+      employees = employees.where(id: EmployeeTag.where(tag_id: query_tag_id).select(:employee_id))
+    end
+
+    render 'index',
+      locals: {
+        employees: employees,
+        query_department_id: query_department_id,
+        query_tag_id: query_tag_id,
+      }
   end
 
   # GET /employees/1
   # GET /employees/1.json
   def show
+    render 'show',
+      locals: locals_for_member
   end
 
   # GET /employees/new
   def new
-    @employee = Employee.new
+    employee = Employee.new
+    render 'new',
+      locals: {
+        employee: employee,
+      }
   end
 
   # GET /employees/1/edit
   def edit
+    render 'edit',
+      locals: locals_for_member
   end
 
   # POST /employees
   # POST /employees.json
   def create
-    @employee = Employee.new(employee_params)
+    puts "found tags"
+    puts employee_params[:tag_ids]
+    employee = Employee.new(employee_params)
 
     respond_to do |format|
-      if @employee.save
-        format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
-        format.json { render :show, status: :created, location: @employee }
+      if employee.save
+        format.html { redirect_to employee, notice: 'Employee was successfully created.' }
+        format.json { render :show, status: :created, location: employee }
       else
         format.html { render :new }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
+        format.json { render json: employee.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +72,12 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /employees/1.json
   def update
     respond_to do |format|
-      if @employee.update(employee_params)
-        format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
-        format.json { render :show, status: :ok, location: @employee }
+      if employee.update(employee_params)
+        format.html { redirect_to employee, notice: 'Employee was successfully updated.' }
+        format.json { render :show, status: :ok, location: employee }
       else
         format.html { render :edit }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
+        format.json { render json: employee.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +85,7 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   # DELETE /employees/1.json
   def destroy
-    @employee.destroy
+    employee.destroy
     respond_to do |format|
       format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
       format.json { head :no_content }
@@ -62,13 +93,20 @@ class EmployeesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_employee
-      @employee = Employee.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def locals_for_member
+    {
+      employee: employee,
+    }
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def employee_params
-      params.require(:employee).permit(:first_name, :last_name, :email)
-    end
+  def employee
+    Employee.find(params[:id])
+  end
+  memoize :employee
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def employee_params
+    params.require(:employee).permit!
+  end
 end
