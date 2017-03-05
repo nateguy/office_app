@@ -27,13 +27,18 @@ class Employee < ActiveRecord::Base
     full_name_array.compact.join(" ")
   end
 
+  def tag_ids
+    employee_tags.map do |employee_tag|
+      employee_tag&.tag&.id
+    end.compact
+  end
 
   Contract Or[String, CollectionOf[Array, Or[String, Integer]]] => Any
   def tag_ids=(tag_id_values)
     # String input is mainly caused by incorrect hidden input,
     # and the value should be ignored whatever the content is
     employee_tags.clear
-    
+
     if tag_id_values.is_a?(String)
       return
     end
